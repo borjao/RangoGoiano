@@ -2,13 +2,14 @@ import React from 'react';
 import { Tag } from 'lucide-react';
 import { formatCurrency } from '../utils/formatters';
 import type { DailyPromotion } from '../types';
+import { dailyPromotions } from '../data/products'; // Certifique-se de que o caminho está correto
 
 interface DailyPromotionsProps {
   promotions: DailyPromotion[];
   onAddToCart: (item: DailyPromotion) => void;
 }
 
-export function DailyPromotions({ promotions, onAddToCart }: DailyPromotionsProps) {
+export function DailyPromotions({ promotions = dailyPromotions, onAddToCart }: DailyPromotionsProps) {
   return (
     <section id="promocoes" className="py-12 bg-orange-50">
       <div className="container mx-auto px-4">
@@ -48,11 +49,11 @@ export function DailyPromotions({ promotions, onAddToCart }: DailyPromotionsProp
                       </span>
                     </div>
                   </div>
-                  <button 
+                  <button
                     onClick={() => onAddToCart(promo)}
-                    className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors"
+                    className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
                   >
-                    Pedir Agora
+                    Adicionar ao Carrinho
                   </button>
                 </div>
               </div>
