@@ -33,7 +33,7 @@ export const products = [
   },
 ] as const;
 
-export const combos = [
+export const dailyPromotions = [
   {
     id: 'combo1',
     name: "Combo Goiano",

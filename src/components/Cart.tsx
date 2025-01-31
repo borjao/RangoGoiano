@@ -1,4 +1,3 @@
-import React from 'react';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import type { CartItem } from '../types';
 import { formatCurrency } from '../utils/formatters';
