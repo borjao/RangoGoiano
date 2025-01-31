@@ -1,14 +1,13 @@
 import { Tag } from 'lucide-react';
 import { formatCurrency } from '../utils/formatters';
 import type { DailyPromotion } from '../types';
-import { dailyPromotions } from '../data/products'; // Certifique-se de que o caminho está correto
 
 interface DailyPromotionsProps {
   promotions: DailyPromotion[];
   onAddToCart: (item: DailyPromotion) => void;
 }
 
-export function DailyPromotions({ promotions = dailyPromotions, onAddToCart }: DailyPromotionsProps) {
+export function DailyPromotions({ promotions, onAddToCart }: DailyPromotionsProps) {
   return (
     <section id="promocoes" className="py-12 bg-orange-50">
       <div className="container mx-auto px-4">
@@ -37,16 +36,20 @@ export function DailyPromotions({ promotions = dailyPromotions, onAddToCart }: D
                       <span className="text-2xl font-bold text-red-600">
                         {formatCurrency(promo.price)}
                       </span>
-                      <span className="text-sm text-gray-500 line-through">
-                        {formatCurrency(promo.originalPrice)}
-                      </span>
+                      {promo.savings && (
+                        <span className="text-sm text-gray-500 line-through">
+                          {formatCurrency(promo.price + promo.savings)}
+                        </span>
+                      )}
                     </div>
-                    <div className="flex items-center text-green-600 mt-1">
-                      <Tag className="h-4 w-4 mr-1" />
-                      <span className="text-sm">
-                        Economia de {formatCurrency(promo.originalPrice - promo.price)}
-                      </span>
-                    </div>
+                    {promo.savings && (
+                      <div className="flex items-center text-green-600 mt-1">
+                        <Tag className="h-4 w-4 mr-1" />
+                        <span className="text-sm">
+                          Economia de {formatCurrency(promo.savings)}
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <button
                     onClick={() => onAddToCart(promo)}
